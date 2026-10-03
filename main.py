@@ -191,7 +191,7 @@ def write_outputs(df: pd.DataFrame, summary: dict[str, Any], candidates: pd.Data
     (RESULTS_DIR / "summary.json").write_text(json.dumps(summary, indent=2, default=str))
     lines = ["# Findings", "", f"Data source: `{source}`.", f"The pipeline collected **{summary.get('swap_count', 0):,} Swap events** across fee tiers `{summary.get('fee_tiers', [])}`.", ""]
     for row in summary.get("per_fee", []):
-        lines.append(f"- Fee {row['fee'] / 10000:.2%}: {row['swap_count']:,} swaps, ${row['volume_usdc']:,.0f} notional, {row['reversion_rate']:.1%} of large price shocks reverted within ten subsequent swaps.")
+        lines.append(f"- Fee {row['fee'] / 1_000_000:.2%}: {row['swap_count']:,} swaps, ${row['volume_usdc']:,.0f} notional, {row['reversion_rate']:.1%} of large price shocks reverted within ten subsequent swaps.")
     lines += ["", "Cross-pool signals are rows where the last observed price in the 0.30% pool differed from the 0.05% pool by at least 10 bps at an aligned block.", "", "## Interpretation", "A large swap changes the pool's marginal price. A subsequent move back toward the pre-swap price is a simple, observable proxy for short-lived dislocation and possible backrun/arbitrage activity. This is a signal detector, not proof that a particular transaction was an arbitrage trade: proving that would require decoding router paths, gas ordering, and profitability.", "", "## Reproduction", "Run `python main.py --demo` for an offline smoke test, or `python main.py --lookback-blocks 20000` against the free public Arbitrum RPC."]
     (RESULTS_DIR / "findings.md").write_text("\n".join(lines) + "\n")
 

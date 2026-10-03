@@ -3,8 +3,8 @@
 Data source: `deterministic demo data`.
 The pipeline collected **480 Swap events** across fee tiers `[500, 3000]`.
 
-- Fee 5.00%: 240 swaps, $4,715,321 notional, 80.0% of large price shocks reverted within ten subsequent swaps.
-- Fee 30.00%: 240 swaps, $4,807,862 notional, 50.0% of large price shocks reverted within ten subsequent swaps.
+- Fee 0.05%: 240 swaps, $4,715,321 notional, 80.0% of large price shocks reverted within ten subsequent swaps.
+- Fee 0.30%: 240 swaps, $4,807,862 notional, 50.0% of large price shocks reverted within ten subsequent swaps.
 
 Cross-pool signals are rows where the last observed price in the 0.30% pool differed from the 0.05% pool by at least 10 bps at an aligned block.
 
