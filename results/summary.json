@@ -1,24 +1,36 @@
 {
-  "swap_count": 127,
+  "swap_count": 937,
   "fee_tiers": [
-    500
+    500,
+    3000
   ],
-  "block_start": 511277650,
-  "block_end": 511297591,
+  "block_start": 511237065,
+  "block_end": 511336713,
   "per_fee": [
     {
       "fee": 500,
-      "swap_count": 127,
-      "volume_usdc": 296320.372111,
-      "median_swap_usdc": 537.36057,
-      "large_swap_threshold_p95": 8801.858233199993,
-      "large_price_shocks": 1,
+      "swap_count": 915,
+      "volume_usdc": 2209522.146668,
+      "median_swap_usdc": 1054.205214,
+      "large_swap_threshold_p95": 8622.752585299999,
+      "large_price_shocks": 5,
       "reverted_within_10_swaps": 1,
-      "reversion_rate": 1.0,
+      "reversion_rate": 0.2,
       "median_reversion_blocks": 94.0
+    },
+    {
+      "fee": 3000,
+      "swap_count": 22,
+      "volume_usdc": 13977.137862,
+      "median_swap_usdc": 338.78907549999997,
+      "large_swap_threshold_p95": 2628.030941849999,
+      "large_price_shocks": 1,
+      "reverted_within_10_swaps": 0,
+      "reversion_rate": 0.0,
+      "median_reversion_blocks": null
     }
   ],
-  "cross_pool_signal_count": 0,
+  "cross_pool_signal_count": 378,
   "source": "https://arb1.arbitrum.io/rpc",
-  "generated_at_utc": "2026-10-03T12:15:29.234593+00:00"
+  "generated_at_utc": "2026-10-03T15:13:33.249139+00:00"
 }
