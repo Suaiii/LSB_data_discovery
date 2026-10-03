@@ -1,10 +1,9 @@
 # Findings
 
-Data source: `deterministic demo data`.
-The pipeline collected **480 Swap events** across fee tiers `[500, 3000]`.
+Data source: `https://arb1.arbitrum.io/rpc`.
+The pipeline collected **127 Swap events** across fee tiers `[500]`.
 
-- Fee 0.05%: 240 swaps, $4,715,321 notional, 80.0% of large price shocks reverted within ten subsequent swaps.
-- Fee 0.30%: 240 swaps, $4,807,862 notional, 50.0% of large price shocks reverted within ten subsequent swaps.
+- Fee 0.05%: 127 swaps, $296,320 notional, 100.0% of large price shocks reverted within ten subsequent swaps.
 
 Cross-pool signals are rows where the last observed price in the 0.30% pool differed from the 0.05% pool by at least 10 bps at an aligned block.
 
