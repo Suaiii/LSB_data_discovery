@@ -1,0 +1,36 @@
+{
+  "swap_count": 480,
+  "fee_tiers": [
+    500,
+    3000
+  ],
+  "block_start": 300000000,
+  "block_end": 300000478,
+  "per_fee": [
+    {
+      "fee": 500,
+      "swap_count": 240,
+      "volume_usdc": 4715321.294973538,
+      "median_swap_usdc": 16663.541482337518,
+      "large_swap_threshold_p95": 31712.13747560243,
+      "large_price_shocks": 10,
+      "reverted_within_10_swaps": 8,
+      "reversion_rate": 0.8,
+      "median_reversion_blocks": 3.0
+    },
+    {
+      "fee": 3000,
+      "swap_count": 240,
+      "volume_usdc": 4807861.96743616,
+      "median_swap_usdc": 17007.329235910358,
+      "large_swap_threshold_p95": 33749.34009764327,
+      "large_price_shocks": 10,
+      "reverted_within_10_swaps": 5,
+      "reversion_rate": 0.5,
+      "median_reversion_blocks": 10.0
+    }
+  ],
+  "cross_pool_signal_count": 238,
+  "source": "deterministic demo data",
+  "generated_at_utc": "2026-10-03T11:52:00.304817+00:00"
+}
