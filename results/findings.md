@@ -1,14 +1,23 @@
 # Findings
 
-Data source: `https://arb1.arbitrum.io/rpc`.
-The pipeline collected **127 Swap events** across fee tiers `[500]`.
+**Data source:** `https://arb1.arbitrum.io/rpc` (free public endpoint).
 
-- Fee 0.05%: 127 swaps, $296,320 notional, 100.0% of large price shocks reverted within ten subsequent swaps.
+The live snapshot covers a 20,000-block Arbitrum window and contains **127 Uniswap V3 Swap events**. All 127 came from the 0.05% WETH/USDC pool; the 0.30% pool had no Swap events in this window. The sample therefore produced **zero cross-pool signals** and should be treated as a directional smoke test rather than a market-wide estimate.
 
-Cross-pool signals are rows where the last observed price in the 0.30% pool differed from the 0.05% pool by at least 10 bps at an aligned block.
+- **0.05% fee tier:** 127 swaps, about **$296,320** notional. One event met the sample's large-notional and price-shock thresholds, and it reverted at least 50% toward its pre-swap price within the next ten swaps.
+- **0.30% fee tier:** no events observed in this window, so no reversion or cross-pool statistic is reported.
 
-## Interpretation
-A large swap changes the pool's marginal price. A subsequent move back toward the pre-swap price is a simple, observable proxy for short-lived dislocation and possible backrun/arbitrage activity. This is a signal detector, not proof that a particular transaction was an arbitrage trade: proving that would require decoding router paths, gas ordering, and profitability.
+## Why this data is useful
+
+A Uniswap V3 Swap event contains the signed token amounts and the pool's post-trade square-root price. That makes it possible to measure a price move directly from public chain data, without relying on a third-party indexer. A large move followed by a quick move back is a simple, auditable proxy for temporary dislocation and possible backrun or arbitrage activity.
+
+## Potential application and limits
+
+This output can seed an alerting or research system: flag unusually large swaps, compare the next few pool prices, and prioritize events for deeper MEV analysis. It is not proof that a transaction was profitable arbitrage. A production detector would add longer history, router-path decoding, transaction ordering, gas costs, liquidity/depth modelling, and a second active fee tier.
 
 ## Reproduction
-Run `python main.py --demo` for an offline smoke test, or `python main.py --lookback-blocks 20000` against the free public Arbitrum RPC.
+
+```bash
+python main.py --demo
+python main.py --lookback-blocks 20000 --chunk-size 2000
+```

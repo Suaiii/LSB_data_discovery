@@ -42,3 +42,9 @@ Thresholds are deliberately explicit and easy to change. A production strategy w
 ## Assessment fit
 
 The repository contains the full RPC → event log → decoding → CSV → analysis → findings pipeline, plus a deterministic offline mode for reproducibility. It uses only free public infrastructure and keeps the scope small enough to inspect in one sitting.
+
+## Observed live run
+
+The checked-in live snapshot was collected from the public Arbitrum RPC over a 20,000-block window. It contains 127 swaps from the 0.05% pool and no swaps from the 0.30% pool during that window. One of the sample's large price shocks moved at least halfway back toward its pre-swap price within the next ten swaps. Because the window is short and the second fee tier was inactive, these numbers are directional rather than a market-wide estimate; rerun with a larger lookback before drawing a trading conclusion.
+
+The useful takeaway is methodological: pool-level event data is enough to build a transparent first-pass detector for post-swap price recovery, while a stronger arbitrage study would need longer coverage, both fee tiers, router-path decoding, transaction ordering, gas costs, and liquidity-aware profitability checks.
